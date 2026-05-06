@@ -14,6 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 const categoriaRoutes = require("./routes/categoriaRoutes");
 app.use("/categorias", categoriaRoutes);
 
+const fornecedorRoutes = require("./routes/fornecedorRoutes");
+app.use("/fornecedores", fornecedorRoutes);
+
+const clienteRoutes = require("./routes/clienteRoutes");
+app.use("/clientes", clienteRoutes);
+
 // 🔥 INDEX PRINCIPAL
 app.get("/", (req, res) => {
   res.render("index", {
