@@ -21,6 +21,9 @@ app.use("/fornecedores", fornecedorRoutes);
 const clienteRoutes = require("./routes/clienteRoutes");
 app.use("/clientes", clienteRoutes);
 
+const funcionarioRoutes = require("./routes/funcionarioRoutes");
+app.use("/funcionarios", funcionarioRoutes);
+
 // 🔥 INDEX PRINCIPAL
 app.get("/", (req, res) => {
   res.render("index", {
