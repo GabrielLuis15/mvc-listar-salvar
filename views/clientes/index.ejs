@@ -14,18 +14,36 @@
             <!-- FORMULÁRIO -->
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <h5 class="mb-3">➕ Novo cliente</h5>
-                    <form action="/clientes/salvar" method="POST">
+                    <h5 class="mb-3"><%= clienteEditar ? '✏️ Editar' : '➕ Novo' %> cliente</h5>
+
+                    <form action="<%= clienteEditar ? '/clientes/editar/' + clienteEditar.id : '/clientes/salvar' %>" method="POST">
                         <div class="mb-3">
                             <label class="form-label">Nome</label>
-                            <input type="text" name="nome" class="form-control form-control-lg" required>
+                            <input 
+                            type="text" 
+                            name="nome" 
+                            class="form-control form-control-lg" required
+                            value="<%= clienteEditar ? clienteEditar.nome : '' %>">
 
                             <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control form-control-lg" required>
+                            <input 
+                            type="email" 
+                            name="email" 
+                            class="form-control form-control-lg" required
+                            value="<%= clienteEditar ? clienteEditar.email : '' %>">
                         </div>
 
                         <div class="d-grid">
-                            <button class="btn btn-primary">Salvar</button>
+                            <button class="btn btn-<%= clienteEditar ? 'success' : 'primary' %>"><%= clienteEditar ? 'Atualizar' : 'Salvar' %></button>
+
+                            <% if(clienteEditar){ %>
+
+                            <a href="/clientes" class="btn btn-secondary mt-2">
+                                Cancelar
+                            </a>
+
+                        <% } %>
+
                         </div>
                     </form>
                 </div>

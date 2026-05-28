@@ -30,7 +30,29 @@ function salvar(cliente) {
   salvarDados(clientes);
 }
 
+function buscarPorId(id) {
+    const clientes = lerDados();
+    return clientes.find(c => c.id == id);
+}
+
+function editar(id, novoCliente) {
+    const clientes = lerDados();
+    const index = clientes.findIndex(c => c.id == id);
+    clientes[index].nome = novoCliente.nome;
+    clientes[index].email = novoCliente.email;
+    salvarDados(clientes);
+}
+
+function excluir(id) {
+    const clientes = lerDados();
+    const novaLista = clientes.filter(c => c.id != id);
+    salvarDados(novaLista);
+}
+
 module.exports = {
   listar,
-  salvar
+  salvar,
+  buscarPorId,
+  editar,
+  excluir
 };

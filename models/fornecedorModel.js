@@ -24,13 +24,35 @@ function salvar(fornecedor) {
       fornecedores[fornecedores.length - 1].id + 1 :
       1,
     nome: fornecedor.nome,
-    cnpj: fornecedor.cnpj
+    cnpj: fornecedor.cnpj,
   };
   fornecedores.push(novo);
   salvarDados(fornecedores);
 }
 
+function buscarPorId(id) {
+    const fornecedores = lerDados();
+    return fornecedores.find(c => c.id == id);
+}
+
+function editar(id, novoFornecedor) {
+    const fornecedores = lerDados();
+    const index = fornecedores.findIndex(f => f.id == id);
+    fornecedores[index].nome = novoFornecedor.nome;
+    fornecedores[index].cnpj = novoFornecedor.cnpj;
+    salvarDados(fornecedores);
+}
+
+function excluir(id) {
+    const fornecedores = lerDados();
+    const novaLista = fornecedores.filter(c => c.id != id);
+    salvarDados(novaLista);
+}
+
 module.exports = {
   listar,
-  salvar
+  salvar,
+  buscarPorId,
+  editar,
+  excluir
 };
